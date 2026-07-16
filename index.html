@@ -22,7 +22,7 @@
           <p class="eyebrow">TINO FAMILY TRIP · FUKUOKA</p>
           <h1>福岡三代同堂<br>無礙動線</h1>
         </div>
-        <button class="round-button" id="installBtn" aria-label="安裝 App" hidden>＋</button>
+        <div class="hero-actions"><button class="round-button" id="editToggle" aria-label="切換編輯模式">編</button><button class="round-button" id="installBtn" aria-label="安裝 App" hidden>＋</button></div>
       </div>
       <p class="hero-copy">5 大 1 小｜推車｜長輩可休｜單區規劃</p>
       <div class="trip-facts">
@@ -57,7 +57,7 @@
           <article class="info-card"><span>家庭成員</span><h3>5 大 1 小</h3><p>Tino、潘婷、爸爸、媽媽、岳母、嘟嘟（3 歲）</p></article>
           <article class="info-card warning"><span>出發前確認</span><ul><li>水舞、水族館與鋼彈演出時刻</li><li>teamLab 入場時間與餐廳訂位</li><li>包車、兒童座椅及所有費用</li><li>BR105 最終班機時間與臨時休館</li></ul></article>
         </div>
-        <button class="reset-button" id="resetProgress">清除所有完成紀錄</button>
+        <div class="data-tools"><button class="reset-button primary" id="exportJson">匯出 JSON</button><button class="reset-button primary" id="importJson">匯入 JSON</button><button class="reset-button" id="restoreDefault">恢復原始福岡行程</button><button class="reset-button" id="resetProgress">清除所有完成紀錄</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
       </section>
     </main>
 
