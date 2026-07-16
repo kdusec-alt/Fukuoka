@@ -1,0 +1,13 @@
+{
+  "name": "Tino 福岡三代同堂旅行",
+  "short_name": "福岡行程",
+  "description": "5 大 1 小的福岡七日旅行現場 App",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3f6fa",
+  "theme_color": "#173f73",
+  "lang": "zh-Hant",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
