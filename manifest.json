@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="#1646b9"/><path d="M256 88c-55 0-100 45-100 100 0 75 100 172 100 172s100-97 100-172c0-55-45-100-100-100zm0 64a36 36 0 1 1 0 72 36 36 0 0 1 0-72z" fill="#ffd54f"/></svg>
+{
+  "name": "Tino 福岡三代同堂旅行",
+  "short_name": "福岡行程",
+  "description": "5 大 1 小的福岡七日旅行現場 App",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3f6fa",
+  "theme_color": "#173f73",
+  "lang": "zh-Hant",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

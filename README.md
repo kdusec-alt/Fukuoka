@@ -1,75 +1,34 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#173f73">
-  <meta name="description" content="Tino 福岡三代同堂旅行現場行程 App">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="福岡行程">
-  <title>福岡三代同堂旅行</title>
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <div class="app-shell">
-    <header class="hero">
-      <div class="hero-top">
-        <div>
-          <p class="eyebrow">TINO FAMILY TRIP · FUKUOKA</p>
-          <h1>福岡三代同堂<br>無礙動線</h1>
-        </div>
-        <button class="round-button" id="installBtn" aria-label="安裝 App" hidden>＋</button>
-      </div>
-      <p class="hero-copy">5 大 1 小｜推車｜長輩可休｜單區規劃</p>
-      <div class="trip-facts">
-        <span>8/20–8/26</span><span>6 晚同飯店</span><span>福岡</span>
-      </div>
-      <nav class="day-tabs" id="dayTabs" aria-label="選擇行程日期"></nav>
-    </header>
+# Tino 福岡三代同堂旅行 App
 
-    <main>
-      <section class="view active" id="scheduleView" aria-label="每日行程">
-        <div class="day-summary" id="daySummary"></div>
-        <div class="timeline" id="timeline"></div>
-      </section>
+手機優先、可安裝、可離線查看文字行程的純前端 PWA。沒有帳號、資料庫或付費 API。
 
-      <section class="view map-view" id="mapView" aria-label="地圖">
-        <div class="map-toolbar">
-          <button class="tool-button" id="fitMap">顯示全部</button>
-          <a class="tool-button primary" id="openDayMap" target="_blank" rel="noopener">Google Maps</a>
-        </div>
-        <div id="map" role="application" aria-label="當日景點地圖"></div>
-        <p class="map-fallback" id="mapFallback" hidden>地圖需要網路載入；行程文字仍可離線查看。</p>
-      </section>
+## 本機預覽
 
-      <section class="view info-view" id="infoView" aria-label="旅遊資訊">
-        <div class="section-heading">
-          <p class="eyebrow dark">TRIP DESK</p>
-          <h2>旅行資料與待確認</h2>
-        </div>
-        <div class="info-grid">
-          <article class="info-card accent"><span>住宿</span><h3>三井花園飯店福岡中洲</h3><p>六晚不換飯店｜鄰近中洲川端站</p><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E4%BA%95%E8%8A%B1%E5%9C%92%E9%A3%AF%E5%BA%97%E7%A6%8F%E5%B2%A1%E4%B8%AD%E6%B4%B2">開啟地圖 →</a></article>
-          <article class="info-card"><span>交通原則</span><h3>少轉乘、找電梯、不趕車</h3><p>機場接送｜太宰府包車｜市區地鐵、JR 與短距離步行</p></article>
-          <article class="info-card"><span>家庭成員</span><h3>5 大 1 小</h3><p>Tino、潘婷、爸爸、媽媽、岳母、嘟嘟（3 歲）</p></article>
-          <article class="info-card warning"><span>出發前確認</span><ul><li>水舞、水族館與鋼彈演出時刻</li><li>teamLab 入場時間與餐廳訂位</li><li>包車、兒童座椅及所有費用</li><li>BR105 最終班機時間與臨時休館</li></ul></article>
-        </div>
-        <button class="reset-button" id="resetProgress">清除所有完成紀錄</button>
-      </section>
-    </main>
+不能直接雙擊 `index.html` 測試 PWA，請在資料夾內啟動本機伺服器：
 
-    <nav class="bottom-nav" aria-label="主要功能">
-      <button class="nav-item active" data-view="scheduleView"><span>☷</span>行程</button>
-      <button class="nav-item" data-view="mapView"><span>⌖</span>地圖</button>
-      <button class="nav-item" data-view="infoView"><span>ⓘ</span>資訊</button>
-    </nav>
-  </div>
+```bash
+python3 -m http.server 8080
+```
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="./data.js"></script>
-  <script src="./app.js"></script>
-</body>
-</html>
+再開啟 `http://localhost:8080`。
+
+## 更新行程
+
+所有 Day 1–Day 7 行程都在 `data.js` 的 `window.ITINERARY`。修改站點名稱、時間、說明、座標後重新提交即可，不必改介面程式。
+
+不要自行填入尚未確認的班次、表演時間、訂位結果或票券狀態。
+
+## GitHub Pages 部署
+
+1. 新增 GitHub repository，將本資料夾全部檔案放在 repository 根目錄。
+2. Push 到 `main`。
+3. Repository → Settings → Pages → Source 選擇 **GitHub Actions**。
+4. workflow 完成後，Actions 頁面會顯示公開網址。
+
+所有資源均採相對路徑，因此 repository 名稱不需寫死，也沒有重新整理路由問題。
+
+## 離線與資料保存
+
+- 首次連網開啟後，行程文字與介面會快取在裝置上。
+- 地圖圖磚與 Google Maps 導航仍需要網路。
+- 完成勾選存在該裝置的 `localStorage`；清除瀏覽器網站資料後會消失。
