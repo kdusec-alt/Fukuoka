@@ -1,4 +1,4 @@
-window.ITINERARY = [
+window.DEFAULT_ITINERARY = [
   {
     "id": 1,
     "date": "8/20 週四",
@@ -574,3 +574,4 @@ window.ITINERARY = [
     ]
   }
 ];
+window.cloneDefaultItinerary = () => JSON.parse(JSON.stringify(window.DEFAULT_ITINERARY));
