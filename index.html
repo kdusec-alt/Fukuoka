@@ -19,20 +19,22 @@
     <header class="hero">
       <div class="hero-top">
         <div>
-          <p class="eyebrow">TINO FAMILY TRIP · FUKUOKA</p>
-          <h1>福岡三代同堂<br>無礙動線</h1>
+          <p class="eyebrow" id="brandLine">Tino Travel</p>
+          <h1><span id="tripTitle">我的旅行</span><br><span id="tripSubtitle">Travel Planner</span></h1>
         </div>
-        <button class="round-button" id="installBtn" aria-label="安裝 App" hidden>＋</button>
+        <div class="hero-actions"><button class="round-button" id="editToggle" aria-label="切換編輯模式">編</button><button class="round-button" id="installBtn" aria-label="安裝 App" hidden>＋</button></div>
       </div>
-      <p class="hero-copy">5 大 1 小｜推車｜長輩可休｜單區規劃</p>
-      <div class="trip-facts">
-        <span>8/20–8/26</span><span>6 晚同飯店</span><span>福岡</span>
-      </div>
+      <p class="hero-copy" id="partySummary">選擇或建立旅行專案</p>
+      <div class="trip-facts" id="tripFacts"></div>
       <nav class="day-tabs" id="dayTabs" aria-label="選擇行程日期"></nav>
     </header>
 
     <main>
-      <section class="view active" id="scheduleView" aria-label="每日行程">
+      <section class="view active home-view" id="homeView" aria-label="我的旅行"><div class="section-heading"><p class="eyebrow dark">TINO TRAVEL</p><h2>我的旅行</h2></div><div id="tripList" class="trip-list"></div><button class="reset-button primary" id="createTrip">＋ 建立新旅行</button><p class="empty-state" id="firstUseGuide" hidden>建立第一個旅行後，就能編輯日期、飯店、每日行程與地圖導航。</p></section>
+
+      <section class="view" id="settingsView" aria-label="旅行設定"><div id="tripSettings"></div></section>
+
+      <section class="view" id="scheduleView" aria-label="每日行程">
         <div class="day-summary" id="daySummary"></div>
         <div class="timeline" id="timeline"></div>
       </section>
@@ -57,13 +59,15 @@
           <article class="info-card"><span>家庭成員</span><h3>5 大 1 小</h3><p>Tino、潘婷、爸爸、媽媽、岳母、嘟嘟（3 歲）</p></article>
           <article class="info-card warning"><span>出發前確認</span><ul><li>水舞、水族館與鋼彈演出時刻</li><li>teamLab 入場時間與餐廳訂位</li><li>包車、兒童座椅及所有費用</li><li>BR105 最終班機時間與臨時休館</li></ul></article>
         </div>
-        <button class="reset-button" id="resetProgress">清除所有完成紀錄</button>
+        <div class="data-tools"><button class="reset-button primary" id="exportJson">匯出旅行 JSON</button><button class="reset-button primary" id="importJson">匯入旅行 JSON</button><button class="reset-button primary" id="backupAll">完整資料備份</button><button class="reset-button" id="restoreDefault">恢復預設福岡旅行</button><button class="reset-button" id="resetProgress">清除本旅行完成紀錄</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="主要功能">
-      <button class="nav-item active" data-view="scheduleView"><span>☷</span>行程</button>
+      <button class="nav-item active" data-view="homeView"><span>⌂</span>旅行</button>
+      <button class="nav-item" data-view="scheduleView"><span>☷</span>行程</button>
       <button class="nav-item" data-view="mapView"><span>⌖</span>地圖</button>
+      <button class="nav-item" data-view="settingsView"><span>⚙</span>設定</button>
       <button class="nav-item" data-view="infoView"><span>ⓘ</span>資訊</button>
     </nav>
   </div>
