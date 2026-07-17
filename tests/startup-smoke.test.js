@@ -7,17 +7,18 @@ const styles=fs.readFileSync('styles.css','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
   'homePanel','daySummary','timeline','openDayMap','fitMap','mapFallback',
-  'settingsPanel','importFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
+  'settingsPanel','importFile','restoreFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
   'stopSheet','stopForm','moreSettings','moreFields','mapParseStatus','mapUrlInput',
   'googlePlaceSearch','sheetTitle','parseMapLink','snackbar','placeResults',
   'placeSearchStatus','retryPlaceSearch','placeSearchInput','tripWizard',
-  'tripWizardForm','wizardProgress','wizardBack','wizardNext','wizardCreate'
+  'tripWizardForm','wizardProgress','wizardBack','wizardNext','wizardCreate',
+  'restoreSheet','restorePreview','mergeRestore','replaceRestore'
 ];
 const generatedDomIds=[
   'addDay','addStop','autoSort','backupAll','copyDay','dayDown','dayUp',
   'deleteDay','deleteTrip','exportTrip','importTrip','quickAddStop',
   'resetProgress','restoreDefault','undoDelete','backupAll','dayWeather',
-  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup'
+  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup','restoreBackup'
 ];
 const appDomIds=[...new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map(match=>match[1]))];
 
@@ -49,4 +50,8 @@ assert.match(app,/t\.coverPhoto=''/,'trip copies do not duplicate the original m
 assert.match(app,/id!==\'homeView\'&&editMode\)setEditMode\(false\)/,'leaving Overview always exits global edit mode');
 assert.match(app,/BACKUP_KEY='tino-travel-last-backup-v1'/,'full backup time is stored separately from trip data');
 assert.match(app,/14\*86400000/,'backup reminder becomes due after fourteen days');
+assert.match(app,/exportedAt:new Date\(\)\.toISOString\(\)/,'full backups record their export time');
+assert.match(app,/請改用「完整還原」預覽後再處理/,'single-trip import refuses full backups');
+assert.match(app,/mode==='replace'/,'full restore offers an explicit replace path');
+assert.match(app,/raw\.trips\.map\(remapImportedTrip\)/,'merge restore remaps imported trip identities');
 console.log('startup smoke test passed');
