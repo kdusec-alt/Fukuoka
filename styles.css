@@ -34,3 +34,23 @@ body{position:fixed;inset:0}
 
 /* V9 onboarding, status and map link import */
 .app-status{align-self:center;max-width:120px;padding:6px 8px;border-radius:999px;background:#ffffff1c;color:#dcecff;font-size:10px;font-weight:900;white-space:nowrap}.app-status[data-tone="offline"]{background:#fff1cf;color:#805400}.app-status[data-tone="update"]{background:#dff7ea;color:#12634f}.app-status[data-tone="error"]{background:#ffe5e1;color:#a33c2e}.field-help{color:#77879a;font-size:10px;font-weight:700}.field-help[data-tone="success"]{color:var(--green)}.field-help[data-tone="error"]{color:#b34e3d}.parse-map-link{min-height:38px;border:1px solid #b9cfea;border-radius:10px;background:var(--sky);color:#245c9c;font-weight:900}.trip-wizard[hidden]{display:none}.trip-wizard{position:fixed;z-index:2300;inset:0}.wizard-panel{position:absolute;right:0;bottom:0;left:0;max-height:88dvh;overflow:auto;padding:10px 20px calc(24px + env(safe-area-inset-bottom));border-radius:24px 24px 0 0;background:#fff;box-shadow:0 -10px 40px #17203340}.wizard-progress{margin:0 0 3px;color:var(--blue);font-size:11px;font-weight:900}.wizard-step{display:grid;gap:14px;margin:20px 0;padding:0;border:0}.wizard-step[hidden]{display:none}.wizard-step legend{margin-bottom:14px;font-size:20px;font-weight:900}.wizard-step label{display:grid;gap:6px;color:#43607f;font-size:12px;font-weight:900}.wizard-step input{min-height:48px;padding:10px 12px;border:1px solid #cbd8e7;border-radius:12px;font:inherit}.wizard-tip{margin:0;padding:11px;border-radius:11px;background:#f4f8fd;color:var(--muted);font-size:12px}.wizard-actions{display:flex;justify-content:flex-end;gap:9px}.wizard-actions button{min-height:46px;padding:10px 16px;border:1px solid #cbd8e7;border-radius:12px;background:#fff;color:var(--navy);font-weight:900}.wizard-actions #wizardNext,.wizard-actions #wizardCreate{border-color:var(--navy);background:var(--navy);color:#fff}@media(min-width:760px){.wizard-panel{right:auto;left:calc(21.5% - 220px);width:440px}}
+
+/* V10 journey-first visual hierarchy */
+@media(max-width:759px){
+.hero.journey-mode{padding:calc(10px + env(safe-area-inset-top)) 18px 0}
+.hero.journey-mode .eyebrow,.hero.journey-mode .hero-copy,.hero.journey-mode .trip-facts,.hero.journey-mode .trip-switcher,.hero.journey-mode #editToggle{display:none}
+.hero.journey-mode h1{max-width:72vw;font-size:19px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero.journey-mode h1 br{display:none}
+.hero.journey-mode .hero-actions{margin-left:auto}
+.hero.journey-mode .day-tabs{margin:9px -18px 0;padding:0 18px 10px}
+.hero.journey-mode .day-tab{min-width:66px;padding:9px 10px;border-radius:13px}
+#homeView{min-height:1px}
+.journey-summary{padding:16px 17px;border-radius:19px}
+.journey-heading h2{font-size:22px}
+.journey-summary .weather-row{margin-top:11px}
+.journey-metrics{display:flex;gap:8px;margin-top:11px}
+.journey-metrics span{padding:7px 10px;border-radius:999px;background:var(--sky);color:#285c99;font-size:11px;font-weight:900}
+.add-stop-fixed{position:fixed;z-index:950;right:18px;bottom:calc(94px + env(safe-area-inset-bottom));width:auto;min-height:50px;margin:0;padding:0 18px;border:0;border-radius:999px;background:var(--navy);color:#fff;box-shadow:0 10px 28px #173f7355;font-size:14px}
+.timeline{padding-bottom:90px}
+}
+@media(min-width:760px){.hero.journey-mode .hero-copy,.hero.journey-mode .trip-facts{display:none}.hero.journey-mode h1{font-size:26px}.journey-metrics{display:flex;gap:8px;margin-top:10px}.journey-metrics span{padding:7px 10px;border-radius:999px;background:var(--sky);color:#285c99;font-size:11px;font-weight:900}}
