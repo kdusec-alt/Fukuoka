@@ -24,11 +24,10 @@
       <p class="hero-copy" id="heroSubtitle"></p>
       <div class="trip-facts" id="tripFacts"></div>
       <div class="trip-switcher"><select id="tripSelect" aria-label="切換旅行"></select><button id="newTrip" class="mini-button">新增旅行</button><button id="copyTrip" class="mini-button">複製</button></div>
-      <nav class="day-tabs" id="dayTabs" aria-label="選擇行程日期"></nav>
     </header>
     <main>
       <section class="view active" id="homeView" aria-label="旅行總覽"><div id="homePanel"></div></section>
-      <section class="view" id="scheduleView" aria-label="每日行程"><div class="day-summary" id="daySummary"></div><div class="timeline" id="timeline"></div></section>
+      <section class="view" id="scheduleView" aria-label="每日行程"><nav class="day-tabs schedule-tabs" id="dayTabs" aria-label="選擇行程日期"></nav><div class="day-summary" id="daySummary"></div><div class="timeline" id="timeline"></div></section>
       <section class="view map-view" id="mapView" aria-label="地圖"><div class="map-toolbar"><button class="tool-button" id="fitMap">顯示全部</button><a class="tool-button primary" id="openDayMap" target="_blank" rel="noopener">Google Maps</a></div><div id="map" role="application" aria-label="當日景點地圖"></div><p class="map-fallback" id="mapFallback" hidden>地圖需要網路載入；行程文字仍可離線查看。</p></section>
       <section class="view info-view" id="settingsView" aria-label="旅行設定"><div class="section-heading"><p class="eyebrow dark">TRIP SETTINGS</p><h2>旅行設定與資料</h2></div><div id="settingsPanel"></div></section>
     </main>
