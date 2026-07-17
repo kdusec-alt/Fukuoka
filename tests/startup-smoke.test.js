@@ -8,7 +8,7 @@ const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
   'homePanel','daySummary','timeline','openDayMap','fitMap','mapDayTabs','mapStatus','mapFallback',
   'settingsPanel','importFile','restoreFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
-  'stopSheet','stopForm','moreSettings','moreFields','mapParseStatus','mapUrlInput',
+  'stopSheet','stopForm','moreSettings','moreFields','targetDaySelect','mapParseStatus','mapUrlInput',
   'googlePlaceSearch','sheetTitle','parseMapLink','snackbar','placeResults',
   'placeSearchStatus','retryPlaceSearch','placeSearchInput','tripWizard',
   'tripWizardForm','wizardProgress','wizardBack','wizardNext','wizardCreate',
@@ -18,7 +18,7 @@ const generatedDomIds=[
   'addDay','addStop','autoSort','backupAll','copyDay','dayDown','dayUp',
   'deleteDay','deleteTrip','exportTrip','importTrip','quickAddStop',
   'resetProgress','restoreDefault','undoDelete','backupAll','dayWeather',
-  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup','restoreBackup'
+  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup','restoreBackup','shareDay'
 ];
 const appDomIds=[...new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map(match=>match[1]))];
 
@@ -58,4 +58,8 @@ assert.match(app,/showAllMap=true;updateMap\(day\(\),true\)/,'Show all plots the
 assert.match(app,/data-map-day=/,'map renders direct Day selectors');
 assert.match(app,/days=all\?t\.days:\[d\]/,'all-map mode plots every trip day');
 assert.match(app,/pts\.length===1\)map\.setView/,'a single map point receives a useful zoom level');
+assert.match(app,/target=t\.days\.find\(d=>d\.id===raw\.targetDay\)\|\|source/,'stop form resolves its selected destination Day');
+assert.match(app,/t\.progress\[pkey\(target\.id,existing\.id\)\]=true/,'moving a completed stop preserves completion state');
+assert.match(app,/navigator\.share/,'day sharing prefers the native mobile share sheet');
+assert.match(app,/Google Maps 路線：\$\{dayRouteUrl\(d\)\}/,'shared day text includes its Google Maps route');
 console.log('startup smoke test passed');
