@@ -60,3 +60,39 @@ body{position:fixed;inset:0}
 .info-view .section-heading .eyebrow{display:none}
 .info-view .section-heading h2{margin:0 0 14px;font-size:24px}
 @media(max-width:759px){.info-view{padding:18px 16px 110px}}
+
+
+/* V10.2 compact add control: keep the itinerary visible */
+.add-stop-fixed{
+  position:fixed;
+  z-index:950;
+  right:16px;
+  bottom:calc(92px + env(safe-area-inset-bottom));
+  display:grid;
+  width:52px;
+  min-width:52px;
+  height:52px;
+  min-height:52px;
+  margin:0;
+  padding:0;
+  place-items:center;
+  overflow:hidden;
+  border:0;
+  border-radius:50%;
+  background:var(--navy);
+  color:transparent;
+  box-shadow:0 8px 22px rgba(23,63,115,.34);
+  font-size:0;
+  line-height:1;
+  cursor:pointer;
+}
+.add-stop-fixed::before{
+  content:"+";
+  color:#fff;
+  font-size:30px;
+  font-weight:500;
+  line-height:1;
+  transform:translateY(-1px);
+}
+.add-stop-fixed:active{transform:scale(.94)}
+.timeline{padding-bottom:82px}
