@@ -54,3 +54,9 @@ body{position:fixed;inset:0}
 .timeline{padding-bottom:90px}
 }
 @media(min-width:760px){.hero.journey-mode .hero-copy,.hero.journey-mode .trip-facts{display:none}.hero.journey-mode h1{font-size:26px}.journey-metrics{display:flex;gap:8px;margin-top:10px}.journey-metrics span{padding:7px 10px;border-radius:999px;background:var(--sky);color:#285c99;font-size:11px;font-weight:900}}
+
+/* V10.1 settings must start with settings, not the trip cover */
+.hero.settings-mode{display:none!important}
+.info-view .section-heading .eyebrow{display:none}
+.info-view .section-heading h2{margin:0 0 14px;font-size:24px}
+@media(max-width:759px){.info-view{padding:18px 16px 110px}}
