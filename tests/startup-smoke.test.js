@@ -17,7 +17,7 @@ const generatedDomIds=[
   'addDay','addStop','autoSort','backupAll','copyDay','dayDown','dayUp',
   'deleteDay','deleteTrip','exportTrip','importTrip','quickAddStop',
   'resetProgress','restoreDefault','undoDelete','backupAll','dayWeather',
-  'refreshWeather','chooseCoverPhoto','removeCoverPhoto'
+  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup'
 ];
 const appDomIds=[...new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map(match=>match[1]))];
 
@@ -46,4 +46,7 @@ assert.match(styles,/\.more-fields\[hidden\]\{display:none\}/,'collapsed advance
 assert.match(app,/coverPhoto:String\(t\.coverPhoto\|\|''\)/,'trip schema preserves its memory photo');
 assert.match(app,/canvas\.toDataURL\('image\/jpeg',\.78\)/,'cover photos are resized and compressed before storage');
 assert.match(app,/t\.coverPhoto=''/,'trip copies do not duplicate the original memory photo');
+assert.match(app,/id!==\'homeView\'&&editMode\)setEditMode\(false\)/,'leaving Overview always exits global edit mode');
+assert.match(app,/BACKUP_KEY='tino-travel-last-backup-v1'/,'full backup time is stored separately from trip data');
+assert.match(app,/14\*86400000/,'backup reminder becomes due after fourteen days');
 console.log('startup smoke test passed');
