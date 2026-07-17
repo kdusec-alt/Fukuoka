@@ -1,0 +1,12 @@
+const assert=require('assert');
+const core=require('../itinerary-core.js');
+const stops=[{id:'a',time:'10:00'},{id:'b',time:''},{id:'c',time:'09:00'},{id:'d',time:'10:00'},{id:'e',time:'9:00'}];
+const sorted=core.stableTimeSort(stops);
+assert.deepStrictEqual(sorted.map(s=>s.id),['c','a','d','b','e'],'valid times sort stably and missing/invalid times go last');
+assert.strictEqual(sorted[1].id,'a','sorting never changes stop objects or IDs');
+assert.strictEqual(core.formatDistance(core.haversineKm({lat:33.5902,lng:130.4017},{lat:33.596,lng:130.408})).endsWith('公尺'),true);
+assert.strictEqual(core.formatDistance(4.84),'4.8 公里');
+assert.strictEqual(core.haversineKm({lat:'',lng:''},{lat:1,lng:2}),null,'missing coordinates are harmless');
+const day={stops:[{id:'keep'},{id:'undo'}]}; const progress={'trip:day:undo':true};const removed=day.stops.splice(1,1)[0];delete progress['trip:day:undo'];day.stops.splice(1,0,removed);assert.deepStrictEqual(day.stops.map(s=>s.id),['keep','undo'],'undo restores the same stop ID and position');
+const v4={schemaVersion:4,trips:[{id:'v4',days:[{id:'day',stops:[{id:'original',name:'保留資料'}]}]}]};assert.strictEqual(v4.trips[0].days[0].stops[0].id,'original','schema V4 fixture remains intact');
+console.log('itinerary core tests passed');
