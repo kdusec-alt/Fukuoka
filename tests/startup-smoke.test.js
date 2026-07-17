@@ -7,7 +7,7 @@ const styles=fs.readFileSync('styles.css','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
   'homePanel','daySummary','timeline','openDayMap','fitMap','mapFallback',
-  'settingsPanel','importFile','editToggle','installBtn','newTrip','copyTrip',
+  'settingsPanel','importFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
   'stopSheet','stopForm','moreSettings','moreFields','mapParseStatus','mapUrlInput',
   'googlePlaceSearch','sheetTitle','parseMapLink','snackbar','placeResults',
   'placeSearchStatus','retryPlaceSearch','placeSearchInput','tripWizard',
@@ -17,7 +17,7 @@ const generatedDomIds=[
   'addDay','addStop','autoSort','backupAll','copyDay','dayDown','dayUp',
   'deleteDay','deleteTrip','exportTrip','importTrip','quickAddStop',
   'resetProgress','restoreDefault','undoDelete','backupAll','dayWeather',
-  'refreshWeather'
+  'refreshWeather','chooseCoverPhoto','removeCoverPhoto'
 ];
 const appDomIds=[...new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map(match=>match[1]))];
 
@@ -43,4 +43,7 @@ assert.doesNotMatch(heroMarkup,/id="dayTabs"/,'Overview cover does not own itine
 assert.match(scheduleMarkup,/id="dayTabs"/,'itinerary owns the Day tabs');
 assert.match(app,/classList\.toggle\('hidden',id!==\'homeView\'\)/,'cover is visible only on Overview');
 assert.match(styles,/\.more-fields\[hidden\]\{display:none\}/,'collapsed advanced stop settings stay hidden');
+assert.match(app,/coverPhoto:String\(t\.coverPhoto\|\|''\)/,'trip schema preserves its memory photo');
+assert.match(app,/canvas\.toDataURL\('image\/jpeg',\.78\)/,'cover photos are resized and compressed before storage');
+assert.match(app,/t\.coverPhoto=''/,'trip copies do not duplicate the original memory photo');
 console.log('startup smoke test passed');
