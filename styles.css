@@ -11,3 +11,23 @@
 
 /* V7 weather, actual spending and resilient search */
 .weather-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.weather-row span,.weather-row button{padding:7px 10px;border:0;border-radius:999px;background:#eef7ff;color:#285c99;font-size:11px;font-weight:900}.weather-row button{cursor:pointer;background:#fff1da;color:#8a5800}.badge.expense{background:#eaf3ff;color:#245c9c}.expense-card{border-left:5px solid #6a8fd8}.search-retry{margin-top:6px;padding:7px 10px;border:1px solid #d5e1ee;border-radius:9px;background:#fff;color:var(--blue);font-size:11px;font-weight:900}
+
+/* V8 native-like viewport shell */
+.google-place-search{display:inline-flex;align-items:center;justify-content:center;margin-top:7px;padding:8px 10px;border-radius:10px;background:#173f73;color:#fff;text-decoration:none;font-size:11px;font-weight:900}
+@media(max-width:759px){
+html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none}
+body{position:fixed;inset:0}
+.app-shell{display:flex;height:100dvh;min-height:0;flex-direction:column;overflow:hidden;padding-bottom:0}
+.hero{flex:0 0 auto;transition:padding .2s ease}
+.app-shell>main{flex:1 1 auto;min-height:0;overflow-x:hidden;overflow-y:auto;padding-bottom:96px;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.app-shell>main::-webkit-scrollbar{display:none}
+.hero.compact{padding-top:calc(8px + env(safe-area-inset-top))}
+.hero.compact .eyebrow,.hero.compact .hero-copy,.hero.compact .trip-facts,.hero.compact .trip-switcher{display:none}
+.hero.compact h1{max-width:75vw;font-size:20px;line-height:1.08;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero.compact h1 br{display:none}
+.hero.compact .round-button{width:38px;height:38px}
+.hero.compact .day-tabs{margin-top:9px;padding-bottom:9px}
+.hero.compact .day-tab{min-width:58px;padding:8px 10px}
+.stop-sheet{overscroll-behavior:contain}
+.sheet-panel{overscroll-behavior-y:contain}
+}
