@@ -3,6 +3,7 @@ const fs=require('fs');
 
 const html=fs.readFileSync('index.html','utf8');
 const app=fs.readFileSync('app.js','utf8');
+const styles=fs.readFileSync('styles.css','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
   'homePanel','daySummary','timeline','openDayMap','fitMap','mapFallback',
@@ -41,4 +42,5 @@ const scheduleMarkup=html.slice(html.indexOf('id="scheduleView"'),html.indexOf('
 assert.doesNotMatch(heroMarkup,/id="dayTabs"/,'Overview cover does not own itinerary tabs');
 assert.match(scheduleMarkup,/id="dayTabs"/,'itinerary owns the Day tabs');
 assert.match(app,/classList\.toggle\('hidden',id!==\'homeView\'\)/,'cover is visible only on Overview');
+assert.match(styles,/\.more-fields\[hidden\]\{display:none\}/,'collapsed advanced stop settings stay hidden');
 console.log('startup smoke test passed');
