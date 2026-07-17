@@ -6,7 +6,7 @@ const app=fs.readFileSync('app.js','utf8');
 const styles=fs.readFileSync('styles.css','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
-  'homePanel','daySummary','timeline','openDayMap','fitMap','mapFallback',
+  'homePanel','daySummary','timeline','openDayMap','fitMap','mapDayTabs','mapStatus','mapFallback',
   'settingsPanel','importFile','restoreFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
   'stopSheet','stopForm','moreSettings','moreFields','mapParseStatus','mapUrlInput',
   'googlePlaceSearch','sheetTitle','parseMapLink','snackbar','placeResults',
@@ -54,4 +54,8 @@ assert.match(app,/exportedAt:new Date\(\)\.toISOString\(\)/,'full backups record
 assert.match(app,/請改用「完整還原」預覽後再處理/,'single-trip import refuses full backups');
 assert.match(app,/mode==='replace'/,'full restore offers an explicit replace path');
 assert.match(app,/raw\.trips\.map\(remapImportedTrip\)/,'merge restore remaps imported trip identities');
+assert.match(app,/showAllMap=true;updateMap\(day\(\),true\)/,'Show all plots the whole trip instead of only refitting one day');
+assert.match(app,/data-map-day=/,'map renders direct Day selectors');
+assert.match(app,/days=all\?t\.days:\[d\]/,'all-map mode plots every trip day');
+assert.match(app,/pts\.length===1\)map\.setView/,'a single map point receives a useful zoom level');
 console.log('startup smoke test passed');
