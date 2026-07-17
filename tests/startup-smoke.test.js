@@ -62,4 +62,7 @@ assert.match(app,/target=t\.days\.find\(d=>d\.id===raw\.targetDay\)\|\|source/,'
 assert.match(app,/t\.progress\[pkey\(target\.id,existing\.id\)\]=true/,'moving a completed stop preserves completion state');
 assert.match(app,/navigator\.share/,'day sharing prefers the native mobile share sheet');
 assert.match(app,/Google Maps 路線：\$\{dayRouteUrl\(d\)\}/,'shared day text includes its Google Maps route');
+assert.match(styles,/\.sheet-panel\{width:100%;max-width:100vw;overflow-x:hidden;overflow-y:auto;/,'stop editor cannot scroll horizontally');
+assert.match(styles,/touch-action:pan-y/,'stop editor keeps vertical touch movement only');
+assert.match(styles,/grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/,'editor grid columns may shrink within the phone width');
 console.log('startup smoke test passed');
