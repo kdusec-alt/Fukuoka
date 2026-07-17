@@ -64,3 +64,12 @@ python3 -m json.tool manifest.json
 - 旅行設定可填 YYYY-MM-DD 開始日。Open-Meteo 進入可預報範圍後顯示每日高低溫與降雨機率，快取 30 分鐘。
 - Photon 搜尋失敗時可按「改用備援搜尋」切換 Nominatim，並支援唐吉軻德／唐吉訶德／Don Quijote／ドン・キホーテ關鍵字。
 - 天氣或地點服務離線時不影響手動新增、編輯與實際支出紀錄。
+
+
+## V8 App 視窗與 Google Maps 出口
+
+- 手機版鎖定在 100dvh App 視窗，頁面本身不再上下漂移；只有中央內容區可以滑動。
+- 向下滑動後 Header 自動縮成精簡列，底部導覽持續固定。
+- 新增／編輯景點可隨時開啟 Google Maps 搜尋目前關鍵字。此方式不需要 Google API key，但 Google Maps 選取結果不會自動回填。
+- 若要 Google 店家自動完成並回填，需另行設定 Google Places API、計費帳戶及受限網域金鑰。
+- 天氣在超過 16 天預報範圍時，改為顯示該日可開始查詢預報的日期。
