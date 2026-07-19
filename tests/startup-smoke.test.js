@@ -5,10 +5,11 @@ const html=fs.readFileSync('index.html','utf8');
 const app=fs.readFileSync('app.js','utf8');
 const data=fs.readFileSync('data.js','utf8');
 const styles=fs.readFileSync('styles.css','utf8');
+const serviceWorker=fs.readFileSync('sw.js','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
   'homePanel','daySummary','timeline','openDayMap','fitMap','mapDayTabs','mapStatus','mapFallback',
-  'settingsPanel','importFile','restoreFile','coverPhotoInput','editToggle','installBtn','newTrip','copyTrip',
+  'settingsPanel','importFile','restoreFile','coverPhotoInput','editToggle','installBtn','updateApp','newTrip','copyTrip',
   'stopSheet','stopForm','moreSettings','moreFields','targetDaySelect','mapParseStatus','mapUrlInput',
   'googlePlaceSearch','sheetTitle','parseMapLink','snackbar','placeResults',
   'placeSearchStatus','retryPlaceSearch','placeSearchInput','tripWizard',
@@ -19,7 +20,7 @@ const generatedDomIds=[
   'addDay','addStop','autoSort','backupAll','copyDay','dayDown','dayUp',
   'deleteDay','deleteTrip','exportTrip','importTrip','quickAddStop',
   'resetProgress','restoreDefault','undoDelete','backupAll','dayWeather',
-  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','quickBackup','restoreBackup','shareDay'
+  'refreshWeather','chooseCoverPhoto','removeCoverPhoto','deleteCurrentTrip','quickBackup','restoreBackup','shareDay'
 ];
 const appDomIds=[...new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map(match=>match[1]))];
 
@@ -73,4 +74,9 @@ assert.match(data,/百道海濱・大濠公園・室外日/,'comfort route combi
 assert.match(data,/天神地下街・最後採買・室內日/,'comfort route finishes with a nearby indoor day');
 assert.match(app,/ROUTE_PLANS_DONE='tino-fukuoka-route-plans-v1'/,'existing devices receive the route plans only once');
 assert.match(app,/data\.trips\.push\(routePlanTwoTrip\(\)\)/,'the one-time upgrade adds plan two without replacing existing trips');
+assert.match(app,/id="deleteCurrentTrip"/,'Overview exposes trip deletion when another trip remains');
+assert.match(app,/pendingWorker\.postMessage\(\{type:'SKIP_WAITING'\}\)/,'update button activates the waiting service worker');
+assert.match(app,/navigator\.serviceWorker\.addEventListener\('controllerchange'/,'the app reloads after the selected update activates');
+assert.match(serviceWorker,/LEGACY_AUTO_ACTIVATE=.*tino-travel-v10\.8\.1/,'legacy installs receive the update-button release without uninstalling the PWA');
+assert.match(serviceWorker,/event\.data\?\.type==='SKIP_WAITING'/,'the service worker accepts an explicit update action');
 console.log('startup smoke test passed');
