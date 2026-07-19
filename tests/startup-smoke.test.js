@@ -3,6 +3,7 @@ const fs=require('fs');
 
 const html=fs.readFileSync('index.html','utf8');
 const app=fs.readFileSync('app.js','utf8');
+const data=fs.readFileSync('data.js','utf8');
 const styles=fs.readFileSync('styles.css','utf8');
 const fixedDomIds=[
   'appStatus','brandLine','hero','heroTitle','heroSubtitle','tripFacts','tripSelect','dayTabs',
@@ -65,4 +66,11 @@ assert.match(app,/Google Maps 路線：\$\{dayRouteUrl\(d\)\}/,'shared day text 
 assert.match(styles,/\.sheet-panel\{width:100%;max-width:100vw;overflow-x:hidden;overflow-y:auto;/,'stop editor cannot scroll horizontally');
 assert.match(styles,/touch-action:pan-y/,'stop editor keeps vertical touch movement only');
 assert.match(styles,/grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/,'editor grid columns may shrink within the phone width');
+assert.match(data,/window\.ALTERNATE_ITINERARY = buildComfortItinerary\(\)/,'data exposes the comfort route as a second itinerary');
+assert.match(data,/太宰府包車・遠距室外日/,'comfort route labels its far outdoor day');
+assert.match(data,/LaLaport・中距室內日/,'comfort route alternates back to an indoor day');
+assert.match(data,/百道海濱・大濠公園・室外日/,'comfort route combines the west-side outdoor corridor');
+assert.match(data,/天神地下街・最後採買・室內日/,'comfort route finishes with a nearby indoor day');
+assert.match(app,/ROUTE_PLANS_DONE='tino-fukuoka-route-plans-v1'/,'existing devices receive the route plans only once');
+assert.match(app,/data\.trips\.push\(routePlanTwoTrip\(\)\)/,'the one-time upgrade adds plan two without replacing existing trips');
 console.log('startup smoke test passed');

@@ -60,6 +60,16 @@ window.DEFAULT_ITINERARY = [
         "kid": "可小睡或洗澡"
       },
       {
+        "time": "17:10",
+        "name": "THE FULL FULL HAKATA",
+        "type": "購物",
+        "lat": 33.5914,
+        "lng": 130.4121,
+        "note": "前往櫛田神社途中購買明太法國與隔日早餐；接近 19:00 關店，不安排久候。",
+        "elder": "買完即走，不增加久站時間",
+        "kid": "可挑不辣麵包或甜麵包"
+      },
+      {
         "time": "17:35",
         "name": "櫛田神社",
         "type": "景點",
@@ -173,13 +183,13 @@ window.DEFAULT_ITINERARY = [
       },
       {
         "time": "17:45",
-        "name": "博多站晚餐 A/B",
+        "name": "博多もつ鍋 前田屋 博多店",
         "type": "餐飲",
-        "lat": 33.5898,
-        "lng": 130.4201,
-        "note": "A 敘敘苑 KITTE；B 博多華味鳥水炊鍋，依 Day 1 餐食與體力選一。",
-        "elder": "可預約座位或包廂",
-        "kid": "非辣熟食、湯品"
+        "lat": 33.5893,
+        "lng": 130.4184,
+        "note": "返回博多後享用牛腸鍋；五大一小先預約，若有人不吃內臟則改回華味鳥。",
+        "elder": "預約桌椅座位，不安排榻榻米",
+        "kid": "選味噌或醬油鍋並加點非辣熟食"
       }
     ]
   },
@@ -286,6 +296,16 @@ window.DEFAULT_ITINERARY = [
     ],
     "stops": [
       {
+        "time": "09:15",
+        "name": "Pain Stock 天神店",
+        "type": "購物",
+        "lat": 33.592,
+        "lng": 130.4018,
+        "note": "早上先買明太法國與咖啡，熱門品項售完即止；買完前往天神地下街。",
+        "elder": "控制停留 20–30 分鐘",
+        "kid": "可挑不辣麵包"
+      },
+      {
         "time": "10:00",
         "name": "天神地下街",
         "type": "購物",
@@ -347,13 +367,13 @@ window.DEFAULT_ITINERARY = [
       },
       {
         "time": "17:30",
-        "name": "Royal Garden Cafe Ohori Park",
+        "name": "博多水炊き專門 橙",
         "type": "餐飲",
-        "lat": 33.5884,
-        "lng": 130.3758,
-        "note": "預約室內座位，湖畔晚餐。",
-        "elder": "不用再移動找餐廳",
-        "kid": "義大利麵、漢堡排"
+        "lat": 33.5901,
+        "lng": 130.382,
+        "note": "大濠公園站附近水炊鍋；先確認週日營業並完成訂位，未成功則維持湖畔咖啡晚餐。",
+        "elder": "指定桌椅座位並預留慢慢用餐時間",
+        "kid": "可食雞肉、蔬菜與雜炊"
       }
     ]
   },
@@ -574,4 +594,120 @@ window.DEFAULT_ITINERARY = [
     ]
   }
 ];
-window.cloneDefaultItinerary = () => JSON.parse(JSON.stringify(window.DEFAULT_ITINERARY));
+
+const cloneItinerary = value => JSON.parse(JSON.stringify(value));
+
+function buildComfortItinerary() {
+  const source = cloneItinerary(window.DEFAULT_ITINERARY);
+  const arrival = source[0];
+  const marine = source[1];
+  const momochi = source[2];
+  const tenjin = source[3];
+  const dazaifu = source[4];
+  const lalaport = source[5];
+  const departure = source[6];
+
+  marine.theme = "最遠的室內主題日；單一水族館景點，晚餐回博多。";
+
+  dazaifu.id = 3;
+  dazaifu.date = "8/22 週六";
+  dazaifu.title = "太宰府包車・遠距室外日";
+  dazaifu.theme = "由遠到近的第二站；包車直達並提早出發，降低週六人潮與炎熱負擔。";
+
+  lalaport.id = 4;
+  lalaport.date = "8/23 週日";
+  lalaport.title = "LaLaport・中距室內日";
+  lalaport.theme = "只有鋼彈拍照短暫在戶外，其餘留在冷氣商場恢復體力。";
+
+  const outdoorWest = {
+    id: 5,
+    date: "8/24 週一",
+    title: "百道海濱・大濠公園・室外日",
+    theme: "把福岡西側景點排在同一天，由百道往大濠公園與飯店方向移動。",
+    center: [33.5908, 130.3722],
+    stops: [
+      ...momochi.stops.filter(stop => !["MARK IS 早晚餐", "返回中洲川端"].includes(stop.name)),
+      {
+        time: "15:30",
+        name: "前往大濠公園站",
+        type: "地鐵",
+        lat: 33.5903,
+        lng: 130.3794,
+        note: "由唐人町搭一站至大濠公園；若長輩或嘟嘟疲累，可直接前往餐廳休息。",
+        elder: "同一條機場線、不換車",
+        kid: "推車可一路搭乘"
+      },
+      {
+        time: "16:20",
+        name: "大濠公園",
+        type: "景點",
+        lat: 33.5865,
+        lng: 130.376,
+        note: "只走湖畔短段，不繞湖；傍晚氣溫較低再進行戶外散步。",
+        elder: "長椅多，隨時可休息",
+        kid: "推車散步"
+      },
+      {
+        time: "17:30",
+        name: "博多水炊き專門 橙",
+        type: "餐飲",
+        lat: 33.5901,
+        lng: 130.382,
+        note: "提前預約五大一小桌椅座位；若訂位未成功，改回大濠公園湖畔晚餐。",
+        elder: "用餐後直接搭地鐵回飯店",
+        kid: "雞肉、蔬菜與雜炊可分食"
+      },
+      {
+        time: "19:30",
+        name: "返回飯店",
+        type: "交通",
+        lat: 33.5957,
+        lng: 130.4063,
+        note: "大濠公園站搭機場線直達中洲川端。",
+        elder: "不換線",
+        kid: "回程可休息"
+      }
+    ]
+  };
+
+  const indoorNear = {
+    id: 6,
+    date: "8/25 週二",
+    title: "天神地下街・最後採買・室內日",
+    theme: "最後完整日留在飯店附近，以地下街與百貨為主，買完提早回房整理行李。",
+    center: [33.5905, 130.399],
+    stops: [
+      tenjin.stops.find(stop => stop.name === "Pain Stock 天神店"),
+      tenjin.stops.find(stop => stop.name === "天神地下街"),
+      tenjin.stops.find(stop => stop.name === "赤坂站"),
+      tenjin.stops.find(stop => stop.name === "稚加榮 CHIKAE"),
+      tenjin.stops.find(stop => stop.name === "天神地下街與百貨"),
+      {
+        time: "16:30",
+        name: "博多阪急 B1",
+        type: "購物",
+        lat: 33.5897,
+        lng: 130.4205,
+        note: "搭地鐵前往博多，購買和牛便當、壽司、熟食與水果作為最後一晚晚餐。",
+        elder: "食品樓層採買後即回飯店",
+        kid: "選熟食、水果與不辣餐點"
+      },
+      {
+        time: "18:20",
+        name: "回飯店房內晚餐",
+        type: "休息",
+        lat: 33.5957,
+        lng: 130.4063,
+        note: "吃完整理行李並提早休息，不再安排夜間移動。",
+        elder: "旅行最後一晚最輕鬆",
+        kid: "熟悉環境用餐"
+      }
+    ].filter(Boolean)
+  };
+
+  return [arrival, marine, dazaifu, lalaport, outdoorWest, indoorNear, departure];
+}
+
+window.ALTERNATE_ITINERARY = buildComfortItinerary();
+window.cloneDefaultItinerary = () => cloneItinerary(window.DEFAULT_ITINERARY);
+window.cloneAlternateItinerary = () => cloneItinerary(window.ALTERNATE_ITINERARY);
