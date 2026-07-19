@@ -1,4 +1,4 @@
-const CACHE='tino-travel-v10.8.1';
+const CACHE='tino-travel-v10.9.0';
 const LOCAL=['./','./index.html','./styles.css','./app.js','./itinerary-core.js','./data.js','./manifest.json','./icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(LOCAL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
